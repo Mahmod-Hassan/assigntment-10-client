@@ -1,0 +1,8 @@
+.navbar-anchor a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+.navbar-anchor {
+    align-items: center;
+}
