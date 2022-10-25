@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css'
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -10,15 +10,17 @@ const Header = () => {
             <Container>
 
                 {/* navbar title start */}
-                <Navbar.Brand href="#home">
-                    <img
+                <Navbar.Brand className='text-danger fw-bold fs-2 d-flex align-items-center'>
+                    Learn
+                    <Image
                         src="https://miro.medium.com/max/1400/1*UvWOnSlWP7AbbOtSVUeHMg.png"
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top me-2"
+                        width="40"
+                        height="40"
+                        roundedCircle
+                        className="d-inline-block align-top ms-2"
                         alt=''
-                    />
-                    Easy Learning
+                    ></Image>
+
                 </Navbar.Brand>
                 {/* navbar title close*/}
 
