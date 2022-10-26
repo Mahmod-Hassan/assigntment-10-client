@@ -13,6 +13,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
+    // create new user by register
+    const createNewUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    };
+
     // observer whether user exist or not
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -24,12 +29,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    // create new user by register
-    const createNewUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    };
-
-    const authInfo = { user, signInWithGoogle, createNewUser }
+    const authInfo = { user, signInWithGoogle, createNewUser };
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

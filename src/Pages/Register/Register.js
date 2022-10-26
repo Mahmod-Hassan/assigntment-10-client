@@ -8,8 +8,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Register = () => {
+
     const [error, setError] = useState('');
     const { createNewUser } = useContext(AuthContext);
+
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -20,13 +22,15 @@ const Register = () => {
             setError('at least 6 character need')
             return;
         }
+
         createNewUser(email, password)
             .then(result => {
+                console.log(result.user);
                 setError('');
                 form.reset();
             })
             .catch(error => {
-                setError(error);
+                setError(error.message);
             })
 
     }
