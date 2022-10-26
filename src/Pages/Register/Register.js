@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/AuthProvider';
 const Register = () => {
 
     const [error, setError] = useState('');
-    const { createNewUser } = useContext(AuthContext);
+    const { createNewUser, updateUserProfile } = useContext(AuthContext);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -34,14 +34,27 @@ const Register = () => {
 
         createNewUser(email, password)
             .then(result => {
+                const user = result.user;
+                console.log(user);
                 setError('');
                 form.reset();
+                handleUpdateUserProfile(name, photoUrl);
             })
             .catch(error => {
                 setError(error.message);
             })
+    };
 
+    const handleUpdateUserProfile = (name, photoUrl) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoUrl,
+        };
+        updateUserProfile(profile)
+            .then(res => { })
+            .catch(error => { })
     }
+
     return (
         <Container>
             <Row>
@@ -58,12 +71,12 @@ const Register = () => {
 
                         <h2 className='text-center text-primary mt-0'>Register !!</h2>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label>Your name</Form.Label>
                             <Form.Control name='name' type="text" placeholder="user name" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPhoto">
                             <Form.Label>Photo URL</Form.Label>
                             <Form.Control name='photo' type="text" placeholder="photo url" />
                         </Form.Group>

@@ -36,9 +36,10 @@ const Login = () => {
 
         loginWithEmailPassword(email, password)
             .then(result => {
-                const urer = result.user;
-                form.reset();
+                const user = result.user;
+                console.log(user);
                 navigate(from, { replace: true });
+                form.reset();
             })
             .catch(error => {
                 setError(error.message);

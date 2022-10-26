@@ -28,8 +28,11 @@ const CourseDetails = () => {
                         </Col>
                     </Row>
                 </Col>
+
                 <Col sm={12} md={3}>
-                    <Button className='fs-6 w-100 rounded-0 mb-4' variant='primary'>Download Pdf <HiOutlineDownload /> </Button>
+                    <Button className='fs-6 w-100 rounded-0 mb-4' variant='primary'>Download Pdf <HiOutlineDownload />
+                    </Button>
+
                     <Link to='/checkout'>
                         <Button className='fs-6 w-100 rounded-0' variant='primary'>Get Premium Access</Button>
                     </Link>

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaUserAlt } from 'react-icons/fa';
 import './Header.css'
 import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user);
     const handleLogOut = () => {
         logOut();
     }
@@ -45,14 +46,29 @@ const Header = () => {
                         {
                             user?.uid ?
                                 <>
-                                    <Navbar.Text><Link>{user.displayName}</Link></Navbar.Text>
-                                    <Button variant='outline-dark' onClick={handleLogOut}>LogOut</Button>
+                                    <Navbar.Text>
+                                        <Link className='text-primary'>
+                                            {user.displayName}
+                                        </Link>
+                                    </Navbar.Text>
+
+                                    <Button variant='outline-dark me-3' onClick={handleLogOut}>
+                                        LogOut
+                                    </Button>
+
+                                    <Image
+                                        style={{ height: '30px' }}
+                                        src={user.photoURL}
+                                        alt=""
+                                    ></Image>
                                 </>
 
                                 :
+
                                 <>
                                     <Navbar.Text><Link to='/login'>Login</Link></Navbar.Text>
                                     <Navbar.Text><Link to='/register'>Register</Link></Navbar.Text>
+                                    <FaUserAlt></FaUserAlt>
                                 </>
                         }
 
