@@ -11,16 +11,16 @@ const Courses = () => {
         <Container className='mt-5'>
             <h1 className='text-primary text-center mb-4'>Our Courses</h1>
             <Row className='d-md-flex justify-content-between'>
-                <Col sm={12} md={4} >
+                <Col xs={12} md={4} className='d-flex flex-sm-row flex-md-column'>
                     {
                         courses.map(course => <p
                             key={course.id}
                         >
-                            <Link to={`/courses/${course.id}`}>{course.name}</Link>
+                            <Link className='m-3 text-decoration-none text-dark' to={`/courses/${course.id}`}>{course.name}</Link>
                         </p>)
                     }
                 </Col>
-                <Col sm={12} md={8}>
+                <Col xs={12} md={8}>
                     <Row className='g-4'>
                         {
                             courses.map(course => <Course
