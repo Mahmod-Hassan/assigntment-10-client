@@ -11,7 +11,7 @@ const Courses = () => {
         <Container className='mt-5'>
             <h1 className='text-primary text-center mb-4'>Our Courses</h1>
             <Row className='d-md-flex justify-content-between'>
-                <Col xs={12} md={2} lg={3} className='d-flex flex-wrap flex-sm-row flex-md-column'>
+                <Col xs={12} md={2} lg={3} className='d-flex flex-wrap flex-sm-row flex-md-column bg-light pt-4'>
                     {
                         courses.map(course => <p
                             key={course.id}

@@ -6,13 +6,15 @@ import { useContext } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
     const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const { signInWithGoogle, loginWithEmailPassword } = useContext(AuthContext);
 
@@ -34,13 +36,13 @@ const Login = () => {
 
         loginWithEmailPassword(email, password)
             .then(result => {
+                const urer = result.user;
                 form.reset();
-                navigate('/')
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message);
             })
-        console.log(email, password);
     }
 
     return (
@@ -64,7 +66,7 @@ const Login = () => {
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control name='password' type="password" placeholder="Password" />
+                                <Form.Control name='password' type="password" placeholder="Password" required />
                                 <Form.Text className='text-danger'>{error}</Form.Text>
                             </Form.Group>
 
@@ -75,7 +77,7 @@ const Login = () => {
 
                         </Form>
                         {/* Google login button */}
-                        <Button onClick={handleGoogleSignIn} variant='white' className='border text-start p-0 border-secondary rounded-pill w-100'>
+                        <Button onClick={handleGoogleSignIn} variant='outline-light' className='border text-start p-0 rounded-pill w-100'>
                             <Image
                                 style={{ width: '40px' }}
                                 src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
@@ -85,7 +87,7 @@ const Login = () => {
                         </Button>
 
                         {/* Github Login Button */}
-                        <Button variant='white' className='border text-start p-0 border-secondary rounded-pill w-100 my-2'>
+                        <Button variant='outline-light' className='border text-start p-0 rounded-pill w-100 my-2'>
                             <Image
                                 style={{ width: '40px' }}
                                 src='https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png'

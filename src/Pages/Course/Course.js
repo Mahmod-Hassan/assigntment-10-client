@@ -15,7 +15,7 @@ const Course = ({ course }) => {
                     variant="top"
                     src={img} />
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
+                    <Card.Title className='text-primary'>{name}</Card.Title>
                     <Card.Text className='text-muted'>
                         {description.slice(0, 110) + '...'}
                     </Card.Text>
