@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -31,9 +32,6 @@ const Login = () => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
 
                         {/* Google login button */}
                         <Button variant='white' className='border text-start p-0 border-secondary rounded-pill w-100'>
@@ -52,9 +50,10 @@ const Login = () => {
                                 alt=''
                             ></Image>
                         </Button>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="outline-primary w-50" type="submit">
+                            Login
                         </Button>
+                        <p><small>New User ? Please <Link to='/register'>Register</Link></small></p>
 
                     </Form>
                 </Col>
