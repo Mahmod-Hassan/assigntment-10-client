@@ -1,27 +1,28 @@
 
 import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
-
+    const [error, setError] = useState('');
     const googleProvider = new GoogleAuthProvider();
+    const navigate = useNavigate();
 
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { signInWithGoogle, loginWithEmailPassword } = useContext(AuthContext);
 
     const handleGoogleSignIn = () => {
         signInWithGoogle(googleProvider)
             .then(result => {
-                console.log(result.user);
 
             })
             .catch(error => {
-                console.error(error);
+                setError(error.message)
             })
     }
 
@@ -30,8 +31,16 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        loginWithEmailPassword(email, password)
+            .then(result => {
+                form.reset();
+                navigate('/')
+            })
+            .catch(error => {
+                setError(error.message);
+            })
         console.log(email, password);
-        form.reset();
     }
 
     return (
@@ -51,15 +60,12 @@ const Login = () => {
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control name='email' type="email" placeholder="Enter email" />
-                                {/* <Form.Text className="text-muted">
-                            here i will show error text
-                                We'll never share your email with anyone else.
-                            </Form.Text> */}
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control name='password' type="password" placeholder="Password" />
+                                <Form.Text className='text-danger'>{error}</Form.Text>
                             </Form.Group>
 
                             <Button variant="outline-primary w-50" type="submit">
@@ -75,6 +81,7 @@ const Login = () => {
                                 src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
                                 alt=''
                             ></Image>
+
                         </Button>
 
                         {/* Github Login Button */}

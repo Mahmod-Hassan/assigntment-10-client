@@ -1,6 +1,6 @@
 import React, { createContext, useEffect } from 'react';
 import { useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import app from '../Firebase/firebase.init';
 
 const auth = getAuth(app);
@@ -18,6 +18,10 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     };
 
+    // login already existed user
+    const loginWithEmailPassword = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
     // observer whether user exist or not
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -29,7 +33,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    const authInfo = { user, signInWithGoogle, createNewUser };
+    const authInfo = { user, signInWithGoogle, createNewUser, loginWithEmailPassword };
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

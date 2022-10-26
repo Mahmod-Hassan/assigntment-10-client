@@ -25,14 +25,13 @@ const Register = () => {
 
         createNewUser(email, password)
             .then(result => {
-                console.log(result.user);
                 setError('');
-                form.reset();
+
             })
             .catch(error => {
                 setError(error.message);
             })
-
+        form.reset();
     }
     return (
         <Container>
@@ -40,7 +39,7 @@ const Register = () => {
                 <Col md={6}>
                     <Image
                         className='img-fluid'
-                        src="https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7962.jpg?w=2000"
+                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7965.jpg?w=2000"
                         alt=''
                     ></Image>
                 </Col>
