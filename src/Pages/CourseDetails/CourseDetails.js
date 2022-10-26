@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { HiOutlineDownload } from 'react-icons/hi';
 
 
@@ -30,7 +30,10 @@ const CourseDetails = () => {
                 </Col>
                 <Col sm={12} md={3}>
                     <Button className='fs-6 w-100 rounded-0 mb-4' variant='primary'>Download Pdf <HiOutlineDownload /> </Button>
-                    <Button className='fs-6 w-100 rounded-0' variant='primary'>Get Premium Access</Button>
+                    <Link to='/checkout'>
+                        <Button className='fs-6 w-100 rounded-0' variant='primary'>Get Premium Access</Button>
+                    </Link>
+
                 </Col>
             </Row>
         </Container>

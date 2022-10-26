@@ -1,5 +1,7 @@
 import React from 'react';
-import { Col, Card, Button, CardGroup } from 'react-bootstrap';
+import { Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa'
 
 const Course = ({ course }) => {
     const { id, name, description, img } = course;
@@ -17,7 +19,7 @@ const Course = ({ course }) => {
                     <Card.Text className='text-muted'>
                         {description.slice(0, 110) + '...'}
                     </Card.Text>
-                    <Button variant="primary">Details</Button>
+                    <Link to={`/courses/${id}`}><Button variant="primary">Details <FaArrowRight></FaArrowRight></Button></Link>
                 </Card.Body>
             </Card>
         </Col>

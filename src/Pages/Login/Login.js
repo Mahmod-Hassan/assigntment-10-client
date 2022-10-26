@@ -1,10 +1,21 @@
+
 import React from 'react';
+import { useContext } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
+
+    const { signInWithGoogle } = useContext(AuthContext);
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+
+    }
+
     return (
         <Container>
             <Row>
@@ -34,7 +45,7 @@ const Login = () => {
                         </Form.Group>
 
                         {/* Google login button */}
-                        <Button variant='white' className='border text-start p-0 border-secondary rounded-pill w-100'>
+                        <Button onClick={handleGoogleSignIn} variant='white' className='border text-start p-0 border-secondary rounded-pill w-100'>
                             <Image
                                 style={{ width: '40px' }}
                                 src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
@@ -53,7 +64,7 @@ const Login = () => {
                         <Button variant="outline-primary w-50" type="submit">
                             Login
                         </Button>
-                        <p><small>New User ? Please <Link to='/register'>Register</Link></small></p>
+                        <p className='mt-3'><small>New User ? Please <Link to='/register'>Register</Link></small></p>
 
                     </Form>
                 </Col>
