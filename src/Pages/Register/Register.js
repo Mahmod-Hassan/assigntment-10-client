@@ -17,7 +17,9 @@ const Register = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-
+        if (!/[A-Z]/.test(password)) {
+            setError('at least one uppercase need')
+        }
         if (password.length < 6) {
             setError('at least 6 character need')
             return;
