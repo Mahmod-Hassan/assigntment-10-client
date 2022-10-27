@@ -5,7 +5,7 @@ import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import { useState } from 'react';
-import { HiLightBulb } from 'react-icons/hi';
+
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
