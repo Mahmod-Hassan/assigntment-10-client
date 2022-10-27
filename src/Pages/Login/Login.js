@@ -14,7 +14,7 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    const from = location?.state?.from?.pathname || '/';
 
     const { signInWithGoogle, loginWithEmailPassword } = useContext(AuthContext);
 
@@ -62,7 +62,7 @@ const Login = () => {
                             <h2 className='text-center text-warning mt-0'>Login !!</h2>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control name='email' type="email" placeholder="Enter email" />
+                                <Form.Control name='email' type="text" placeholder="Enter email" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">

@@ -2,14 +2,19 @@ import React, { useContext } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import './Header.css'
 import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
     console.log(user);
     const handleLogOut = () => {
-        logOut();
+        logOut()
+            .then(result => {
+                console.log(result);
+                navigate('/');
+            })
     }
     return (
 
@@ -48,7 +53,7 @@ const Header = () => {
                                 <>
                                     <Navbar.Text>
                                         <Link className='text-primary'>
-                                            {user.displayName}
+                                            {user.displayName.toUpperCase()}
                                         </Link>
                                     </Navbar.Text>
 
