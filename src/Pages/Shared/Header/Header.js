@@ -53,7 +53,7 @@ const Header = () => {
                                 <>
                                     <Navbar.Text>
                                         <Link className='text-primary'>
-                                            {user.displayName.toUpperCase()}
+                                            {(user.displayName).toUpperCase()}
                                         </Link>
                                     </Navbar.Text>
 
