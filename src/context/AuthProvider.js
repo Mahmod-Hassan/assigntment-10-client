@@ -21,26 +21,28 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     };
 
-    // set user name and profile
-    const updateUserProfile = (profile) => {
-        return updateProfile(auth.currentUser, profile)
-    }
     // login already existed user
     const loginWithEmailPassword = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    // set user name and profile
+    const updateUserProfile = (profile) => {
+        return updateProfile(auth.currentUser, profile)
+    }
+
+
     // logOUt
     const logOut = () => {
         setLoading(true)
         return signOut(auth);
     }
+
     // observer whether user exist or not
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log(currentUser);
             setLoading(false);
         });
         return () => {
@@ -57,6 +59,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         updateUserProfile
     };
+
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

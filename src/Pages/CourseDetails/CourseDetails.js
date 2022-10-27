@@ -33,7 +33,7 @@ const CourseDetails = () => {
                     <Button className='fs-6 w-100 rounded-0 mb-4' variant='primary'>Download Pdf <HiOutlineDownload />
                     </Button>
 
-                    <Link to={`/checkout/${id}`}>
+                    <Link to={`/course-checkout/${id}`}>
                         <Button className='fs-6 w-100 rounded-0' variant='primary'>Get Premium Access</Button>
                     </Link>
 

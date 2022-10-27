@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const CheckOut = () => {
     const course = useLoaderData();
+    console.log(course);
     const { name, description, img } = course;
     return (
         <Container className='my-5'>
