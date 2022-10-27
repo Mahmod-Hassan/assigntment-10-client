@@ -4,14 +4,14 @@ import { useLoaderData } from 'react-router-dom';
 
 const CheckOut = () => {
     const course = useLoaderData();
-    console.log(course);
     const { name, description, img } = course;
     return (
         <Container className='my-5'>
             <Row>
                 <Col sm={12} md={6} className='mb-sm-3'>
                     <Image
-                        className='img-fluid h-100 w-100'
+                        style={{ height: '' }}
+                        className='img-fluid h-75'
                         src={img}
                     ></Image>
 

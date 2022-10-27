@@ -16,7 +16,7 @@ const Courses = () => {
                         courses.map(course => <p
                             key={course.id}
                         >
-                            <Link className='m-3 text-decoration-none text-dark' to={`/courses/${course.id}`}>{course.name}</Link>
+                            <Link className='m-3 text-decoration-none text-dark' to={`/courses/${course.id}`}>{(course.name).replace('Course', '')}</Link>
                         </p>)
                     }
                 </Col>

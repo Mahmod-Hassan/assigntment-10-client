@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
@@ -21,7 +22,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle(googleProvider)
             .then(result => {
-
+                console.log(result.user);
             })
             .catch(error => {
                 setError(error.message)
@@ -38,8 +39,15 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
                 form.reset();
+                setError('');
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                    toast.success('Congratulation !! successfully purchase')
+                }
+                else {
+                    toast.error('Your Email Not Verified')
+                }
             })
             .catch(error => {
                 setError(error.message);

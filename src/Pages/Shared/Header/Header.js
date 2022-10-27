@@ -8,11 +8,9 @@ import { AuthContext } from '../../../context/AuthProvider';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
-    console.log(user);
     const handleLogOut = () => {
         logOut()
             .then(result => {
-                console.log(result);
                 navigate('/');
             })
     }
@@ -53,7 +51,7 @@ const Header = () => {
                                 <>
                                     <Navbar.Text>
                                         <Link className='text-primary'>
-                                            {(user.displayName).toUpperCase()}
+                                            {(user.displayName)?.toUpperCase()}
                                         </Link>
                                     </Navbar.Text>
 

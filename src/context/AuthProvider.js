@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../Firebase/firebase.init';
 
 export const AuthContext = createContext();
@@ -21,6 +21,10 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     };
 
+    // email varification
+    const emailVerification = () => {
+        return sendEmailVerification(auth.currentUser);
+    }
     // login already existed user
     const loginWithEmailPassword = (email, password) => {
         setLoading(true)
@@ -35,14 +39,17 @@ const AuthProvider = ({ children }) => {
 
     // logOUt
     const logOut = () => {
-        setLoading(true)
+        setLoading(true);
         return signOut(auth);
     }
 
     // observer whether user exist or not
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
+            if (currentUser === null || currentUser.emailVerified) {
+                setUser(currentUser);
+            }
+
             setLoading(false);
         });
         return () => {
@@ -55,6 +62,7 @@ const AuthProvider = ({ children }) => {
         loading,
         signInWithGoogle,
         createNewUser,
+        emailVerification,
         loginWithEmailPassword,
         logOut,
         updateUserProfile
