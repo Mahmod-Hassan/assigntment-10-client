@@ -7,6 +7,8 @@ import { HiOutlineDownload } from 'react-icons/hi';
 const CourseDetails = () => {
     const course = useLoaderData();
     const { img, description, name, id } = course;
+
+
     return (
         <Container className='my-5'>
             <Row>
@@ -30,6 +32,7 @@ const CourseDetails = () => {
                 </Col>
 
                 <Col sm={12} md={3}>
+
                     <Button className='fs-6 w-100 rounded-0 mb-4' variant='primary'>Download Pdf <HiOutlineDownload />
                     </Button>
 

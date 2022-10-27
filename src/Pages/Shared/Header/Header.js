@@ -4,10 +4,22 @@ import './Header.css'
 import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import { useState } from 'react';
+import { HiLightBulb } from 'react-icons/hi';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [displayName, setDisplayName] = useState();
+    const [toggole, setToggole] = useState(true);
     const navigate = useNavigate();
+
+    const showImage = () => {
+        setDisplayName(user.displayName);
+    }
+
+    const handleDarkOrLight = () => {
+        setToggole(!toggole);
+    }
     const handleLogOut = () => {
         logOut()
             .then(result => {
@@ -51,7 +63,7 @@ const Header = () => {
                                 <>
                                     <Navbar.Text>
                                         <Link className='text-primary'>
-                                            {(user.displayName)?.toUpperCase()}
+                                            {(displayName)?.toUpperCase()}
                                         </Link>
                                     </Navbar.Text>
 
@@ -60,9 +72,11 @@ const Header = () => {
                                     </Button>
 
                                     <Image
+                                        roundedCircle
                                         style={{ height: '30px' }}
                                         src={user.photoURL}
                                         alt=""
+                                        onClick={showImage}
                                     ></Image>
                                 </>
 
@@ -73,6 +87,22 @@ const Header = () => {
                                     <Navbar.Text><Link to='/register'>Register</Link></Navbar.Text>
                                     <FaUserAlt></FaUserAlt>
                                 </>
+                        }
+
+                        {
+                            toggole ?
+                                <Button
+                                    onClick={handleDarkOrLight}
+                                    variant='text-dark rounded-pill bg-white ms-2'
+                                >Light
+                                </Button>
+                                :
+                                <Button
+                                    onClick={handleDarkOrLight}
+                                    className='bg-dark rounded-pill ms-2'
+                                >
+                                    Dark
+                                </Button>
                         }
 
                     </Nav>
