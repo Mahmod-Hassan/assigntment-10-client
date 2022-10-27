@@ -13,13 +13,17 @@ const Header = () => {
     const [toggole, setToggole] = useState(true);
     const navigate = useNavigate();
 
+    // onclick image and show displayName
     const showImage = () => {
         setDisplayName(user.displayName);
     }
 
+    // theme changer
     const handleDarkOrLight = () => {
         setToggole(!toggole);
     }
+
+    // logout handler
     const handleLogOut = () => {
         logOut()
             .then(result => {

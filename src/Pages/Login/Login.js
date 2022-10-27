@@ -21,9 +21,7 @@ const Login = () => {
 
     const handleGoogleSignIn = () => {
         signInWithGoogle(googleProvider)
-            .then(result => {
-                console.log(result.user);
-            })
+            .then(result => { })
             .catch(error => {
                 setError(error.message)
             })
@@ -38,7 +36,6 @@ const Login = () => {
         loginWithEmailPassword(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
                 setError('');
                 if (user.emailVerified) {
