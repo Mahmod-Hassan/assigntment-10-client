@@ -19,17 +19,17 @@ export const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://assignment-10-server-kappa.vercel.app/courses')
             },
             {
                 path: '/courses',
                 element: <Courses></Courses>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://assignment-10-server-kappa.vercel.app/courses')
             },
             {
                 path: '/courses/:id',
                 element: <CourseDetails></CourseDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-10-server-kappa.vercel.app/courses/${params.id}`)
             },
             {
                 path: '/login',
@@ -46,7 +46,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/course-checkout/:id',
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/course-checkout/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-10-server-kappa.vercel.app/course-checkout/${params.id}`)
             }
         ]
     },
