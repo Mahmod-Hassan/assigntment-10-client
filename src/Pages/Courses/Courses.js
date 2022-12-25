@@ -6,7 +6,7 @@ import Course from '../Course/Course';
 const Courses = () => {
 
     const courses = useLoaderData();
-
+    console.log(courses);
     return (
 
         <Container className='mt-5'>
